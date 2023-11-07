@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('navbar')
+NoNavbar
+@endsection
+
 @section('content')
 <div class="flex flex-col bg-white" style="height: 100vh">
   <div class="flex flex-1 flex-col justify-center px-6 py-12 lg:px-8">

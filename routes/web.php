@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 Auth::routes();
 
-Route::get('/', Homepage::class)->name('home');
+Route::group(['middleware' => 'auth'], function () {
+  Route::get('/', Homepage::class)->name('home');
+});

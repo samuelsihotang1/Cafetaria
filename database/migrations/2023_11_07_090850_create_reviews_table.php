@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('CASCADE');
             $table->foreignId('food_id')->constrained()->onDelete('CASCADE');
-            $table->enum('review', ['1', '2', '3']);
+            $table->enum('taste', ['1', '2', '3'])->nullable();
+            $table->enum('portion', ['1', '2', '3'])->nullable();
             $table->timestamps();
         });
     }

@@ -9304,8 +9304,11 @@ body {
 }
 
 .hover\:text-gray-300:hover {
+  /* --tw-text-opacity: 1;
+  color: rgb(209 213 219 / var(--tw-text-opacity)); */
+  
   --tw-text-opacity: 1;
-  color: rgb(209 213 219 / var(--tw-text-opacity));
+  color: rgb(250 204 21 / var(--tw-text-opacity));
 }
 
 .hover\:text-gray-400:hover {

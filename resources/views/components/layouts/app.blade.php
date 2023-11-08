@@ -11,7 +11,6 @@
   <script src="{{ asset('js/components.js') }}"></script>
   <link rel="modulepreload" href="{{ asset('js/iframe-alpine-964dceff.js') }}">
   <link rel="modulepreload" href="{{ asset('js/iframe-a81dc9a8.js') }}">
-  <link rel="modulepreload" href="{{ asset('js/_commonjsHelpers-87174ba5.js') }}">
   <script type="module" src="{{ asset('js/iframe-alpine-964dceff.js') }}"></script>
   @livewireStyles
 </head>
@@ -28,18 +27,18 @@
             <!-- Mobile menu button -->
             <button type="button"
               class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
-              aria-controls="mobile-menu" @click="open = !open" aria-expanded="false"
+              aria-controls="mobile-menu" @click="open = !open" aria-expanded="true"
               x-bind:aria-expanded="open.toString()">
               <span class="absolute -inset-0.5"></span>
               <span class="sr-only">Open main menu</span>
               <svg x-description="Icon when menu is closed." x-state:on="Menu open" x-state:off="Menu closed"
-                class="block h-6 w-6" :class="{ 'hidden': open, 'block': !(open) }" fill="none" viewBox="0 0 24 24"
+                class="h-6 w-6 hidden" :class="{ 'hidden': open, 'block': !(open) }" fill="none" viewBox="0 0 24 24"
                 stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5">
                 </path>
               </svg>
               <svg x-description="Icon when menu is open." x-state:on="Menu open" x-state:off="Menu closed"
-                class="hidden h-6 w-6" :class="{ 'block': open, 'hidden': !(open) }" fill="none" viewBox="0 0 24 24"
+                class="h-6 w-6 block" :class="{ 'block': open, 'hidden': !(open) }" fill="none" viewBox="0 0 24 24"
                 stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
               </svg>
@@ -125,28 +124,26 @@
                   @csrf
                 </form>
               </div>
-            </div>
 
+            </div>
           </div>
         </div>
       </div>
-  </div>
 
-  <div x-description="Mobile menu, show/hide based on menu state." class="sm:hidden" id="mobile-menu" x-show="open"
-    style="display: none;">
-    <div class="space-y-1 pb-4 pt-2">
-      <a href="#"
-        class="block border-l-4 border-indigo-500 bg-indigo-50 py-2 pl-3 pr-4 text-base font-medium text-indigo-700">Dashboard</a>
-      <a href="#"
-        class="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700">Team</a>
-      <a href="#"
-        class="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700">Projects</a>
-      <a href="#"
-        class="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700">Calendar</a>
-    </div>
-  </div>
-  </nav>
-
+      <div x-description="Mobile menu, show/hide based on menu state." class="sm:hidden" id="mobile-menu" x-show="open">
+        <div class="space-y-1 pb-4 pt-2">
+          <!-- Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" -->
+          <a href="#"
+            class="block border-l-4 border-indigo-500 bg-indigo-50 py-2 pl-3 pr-4 text-base font-medium text-indigo-700">Dashboard</a>
+          <a href="#"
+            class="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700">Team</a>
+          <a href="#"
+            class="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700">Projects</a>
+          <a href="#"
+            class="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700">Calendar</a>
+        </div>
+      </div>
+    </nav>
   </div>
   @endif
   <main class="mx-auto w-full max-w-7xl py-10">

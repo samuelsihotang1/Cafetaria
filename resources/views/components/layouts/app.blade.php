@@ -2,27 +2,23 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>{{ config('app.name', 'JMJ') }}</title>
-
+  <title>{{ $title ?? 'JMJ' }}</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="{{ asset('css/components.css') }}">
-  <script src="{{ asset('js/components.js') }}">
-  </script>
+  <script src="{{ asset('js/components.js') }}"></script>
   <link rel="modulepreload" href="{{ asset('js/iframe-alpine-964dceff.js') }}">
   <link rel="modulepreload" href="{{ asset('js/iframe-a81dc9a8.js') }}">
   <link rel="modulepreload" href="{{ asset('js/_commonjsHelpers-87174ba5.js') }}">
   <script type="module" src="{{ asset('js/iframe-alpine-964dceff.js') }}"></script>
-
+  @livewireStyles
 </head>
 
 <body class="bg-gray-100">
-
   {{-- Navbar --}}
-  @if(!View::hasSection('navbar'))
+  @if(!isset($navbar))
   <div class="bg-gray-100">
 
     <nav x-data="{ open: false }" class="bg-white shadow">
@@ -153,7 +149,8 @@
 
   </div>
   @endif
-  @yield('content')
+  {{ $slot }}
+  @livewireScripts
 </body>
 
 </html>

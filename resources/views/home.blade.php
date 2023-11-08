@@ -1,5 +1,8 @@
-@extends('layouts.app')
+<x-layouts.app>
+  <x-slot name="title">
+    Homepage
+  </x-slot>
 
-@section('content')
+{{-- Homepage --}}
 
-@endsection
+</x-layouts.app>

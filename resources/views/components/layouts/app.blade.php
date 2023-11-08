@@ -146,9 +146,13 @@
     </nav>
   </div>
   @endif
+  @if(isset($navbar))
+  {{ $slot }}
+  @else
   <main class="mx-auto w-full max-w-7xl py-10">
     {{ $slot }}
   </main>
+  @endif
   @livewireScripts
 </body>
 

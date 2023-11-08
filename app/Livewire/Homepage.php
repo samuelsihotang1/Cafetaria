@@ -11,7 +11,7 @@ class Homepage extends Component
   public $foods;
   public $reviews = [];
 
-  public function __construct()
+  public function mount()
   {
     $this->foods = Food::get();
     foreach ($this->foods as $food) {
@@ -30,11 +30,12 @@ class Homepage extends Component
       $this->reviews[$food->id]->taste = $total;
       $this->reviews[$food->id]->save();
     } else {
-      Review::create([
-        'user_id' => auth()->user()->id,
-        'food_id' => $food->id,
-        'taste' => $total,
-      ]);
+      $this->reviews[$food->id] =
+        Review::create([
+          'user_id' => auth()->user()->id,
+          'food_id' => $food->id,
+          'taste' => $total,
+        ]);
     }
   }
 
@@ -44,11 +45,12 @@ class Homepage extends Component
       $this->reviews[$food->id]->portion = $total;
       $this->reviews[$food->id]->save();
     } else {
-      Review::create([
-        'user_id' => auth()->user()->id,
-        'food_id' => $food->id,
-        'portion' => $total,
-      ]);
+      $this->reviews[$food->id] =
+        Review::create([
+          'user_id' => auth()->user()->id,
+          'food_id' => $food->id,
+          'portion' => $total,
+        ]);
     }
   }
 }

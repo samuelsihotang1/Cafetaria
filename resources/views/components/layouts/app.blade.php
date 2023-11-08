@@ -149,7 +149,9 @@
 
   </div>
   @endif
-  {{ $slot }}
+  <main class="mx-auto w-full max-w-7xl py-10">
+    {{ $slot }}
+  </main>
   @livewireScripts
 </body>
 

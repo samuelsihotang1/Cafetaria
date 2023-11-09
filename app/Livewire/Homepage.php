@@ -5,13 +5,22 @@ namespace App\Livewire;
 use App\Models\Food;
 use App\Models\Review;
 use Livewire\Component;
+use Illuminate\Support\Str;
+use Livewire\WithFileUploads;
 
 class Homepage extends Component
 {
+  use WithFileUploads;
+
   public $foods;
   public $reviews = [];
 
-  public function mount()
+  public $foodTitle;
+  public $foodImage;
+
+  public $openCreate = false;
+
+  public function boot()
   {
     $this->foods = Food::get();
     foreach ($this->foods as $food) {
@@ -52,5 +61,35 @@ class Homepage extends Component
           'portion' => $total,
         ]);
     }
+  }
+
+  public function createFood()
+  {
+    $this->validate([
+      'foodTitle' => 'required|string|max:512',
+      'foodImage' => 'image|max:5120',
+    ]);
+
+    Food::create([
+      'name' => $this->foodTitle,
+      'name_slug' => Str::of($this->foodTitle)->slug('-'),
+      'image' => $this->storeDocument(),
+      'created_at' => now(),
+      'updated_at' => now(),
+    ]);
+
+    $this->foodTitle = NULL;
+    $this->foodImage = NULL;
+    $this->openCreate = false;
+
+    $this->boot();
+  }
+
+  public function storeDocument()
+  {
+    $documentName = auth()->user()->name_slug . Str::of($this->foodTitle)->slug('-') . '.' . $this->foodImage->getClientOriginalExtension();
+    $documentPath = 'public/imgFood/';
+    $this->foodImage->storeAs($documentPath, $documentName);
+    return $documentName;
   }
 }

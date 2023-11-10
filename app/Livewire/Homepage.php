@@ -48,6 +48,12 @@ class Homepage extends Component
     }
   }
 
+  public function deleteFood(Food $food)
+  {
+    $food->delete();
+    $this->boot();
+  }
+
   public function reviewPortion(Food $food, $total)
   {
     if (isset($this->reviews[$food->id])) {

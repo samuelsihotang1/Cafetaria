@@ -1,5 +1,4 @@
 <div x-data="{ openCreate: @entangle('openCreate') }" class="bg-white mx-auto max-w-7xl overflow-hidden ">
-
   <div @keydown.window.escape="openCreate = false" x-show="openCreate" class="relative z-10"
     aria-labelledby="modal-title" x-ref="dialog" aria-modal="true">
     <div x-show="openCreate" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0"
@@ -94,7 +93,8 @@
     @foreach ($foods as $food)
     <div class="group relative border-b border-r border-gray-200 p-4 sm:p-6">
       <div class="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-200 group-hover:opacity-75">
-        <img src="{{ asset('storage/imgFood/' . $food->image) }}" alt="TODO" class="h-full w-full object-cover object-center">
+        <img src="{{ asset('storage/imgFood/' . $food->image) }}" alt="TODO"
+          class="h-full w-full object-cover object-center">
       </div>
       <div class="pb-4 pt-10 text-center">
         <p class="mt-4 text-base font-medium text-gray-900">
@@ -129,6 +129,9 @@
               @endfor
           </div>
         </div>
+        <button wire:click="deleteFood({{ $food }})" type="button" class="mt-4 text-sm text-red-400">
+          Hapus
+        </button>
       </div>
     </div>
     @endforeach

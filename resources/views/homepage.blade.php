@@ -19,8 +19,7 @@
           <div class="absolute right-0 top-0 hidden pr-4 pt-4 sm:block">
             <button type="button"
               class="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-              @click="openCreate = false"
-              wire:loading.attr="disabled">
+              @click="openCreate = false" wire:loading.attr="disabled">
               <span class="sr-only">Close</span>
               <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                 aria-hidden="true">
@@ -42,7 +41,7 @@
                           <label for="foodImage"
                             class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
                             <input required accept="image/*" wire:model="foodImage" id="foodImage" name="foodImage"
-                              type="file">
+                              type="file" wire:click="deleteImage">
                             @error('foodImage')
                             <strong style="font-size: 15px">{{ $message }}</strong>
                             @enderror

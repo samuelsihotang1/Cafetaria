@@ -20,6 +20,21 @@ class Homepage extends Component
 
   public $openCreate = false;
 
+  protected $rules = [
+    'foodImage' => 'required|image|max:2048',
+    'foodTitle' => 'required|string|max:100',
+  ];
+
+  public function updatedFoodImage()
+  {
+    $this->validateOnly('foodImage');
+  }
+
+  public function updatedFoodTitle()
+  {
+    $this->validateOnly('foodTitle');
+  }
+
   public function boot()
   {
     $this->foods = Food::get();

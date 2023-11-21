@@ -1,4 +1,4 @@
-<div x-data="{ openCreate: @entangle('openCreate') }" class="bg-white mx-auto max-w-7xl overflow-hidden ">
+<div wire:poll.100ms x-data="{ openCreate: @entangle('openCreate') }" class="bg-white mx-auto max-w-7xl overflow-hidden ">
   <div @keydown.window.escape="openCreate = false" x-show="openCreate" class="relative z-10"
     aria-labelledby="modal-title" x-ref="dialog" aria-modal="true">
     <div x-show="openCreate" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0"

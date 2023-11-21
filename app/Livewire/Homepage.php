@@ -73,7 +73,7 @@ class Homepage extends Component
   {
     $this->validate([
       'foodTitle' => 'required|string|max:512',
-      'foodImage' => 'image|max:5120',
+      'foodImage' => 'image|required',
     ]);
 
     Food::create([

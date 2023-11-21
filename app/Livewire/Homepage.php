@@ -86,11 +86,6 @@ class Homepage extends Component
 
   public function createFood()
   {
-    $this->validate([
-      'foodTitle' => 'required|string|max:512',
-      'foodImage' => 'image|required',
-    ]);
-
     Food::create([
       'name' => $this->foodTitle,
       'name_slug' => Str::of($this->foodTitle)->slug('-'),

@@ -30,6 +30,11 @@ class Homepage extends Component
     $this->validateOnly('foodImage');
   }
 
+  public function deleteImage()
+  {
+    $this->foodImage = NULL;
+  }
+
   public function updatedFoodTitle()
   {
     $this->validateOnly('foodTitle');
@@ -37,7 +42,7 @@ class Homepage extends Component
 
   public function boot()
   {
-    $this->foods = Food::get();
+    $this->foods = Food::orderBy('created_at', 'desc')->get();
     foreach ($this->foods as $food) {
       $this->reviews[$food->id] = Review::where('user_id', '=', auth()->user()->id)->where('food_id', '=', $food->id)->first();
     }
@@ -86,6 +91,14 @@ class Homepage extends Component
 
   public function createFood()
   {
+    $this->validate([
+      'foodImage' => 'required|image|max:2048', // Maksimum 2MB
+    ], [
+      'foodImage.required' => 'Gambar gagal diupload, ukurannya terlalu besar.',
+      'foodImage.image' => 'File harus berupa gambar.',
+      'foodImage.max' => 'Ukuran gambar terlalu besar.',
+    ]);
+
     Food::create([
       'name' => $this->foodTitle,
       'name_slug' => Str::of($this->foodTitle)->slug('-'),

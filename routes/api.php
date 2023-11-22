@@ -19,4 +19,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
   return $request->user();
 });
 
-Route::get('foods', [ApiController::class, 'getFoods']);
+Route::get('getFoods', [ApiController::class, 'getFoods']);
+
+Route::get('topReviewFood', [ApiController::class, 'topReviewFood']);
+
+Route::get('searchFoods', [ApiController::class, 'searchFoods']);

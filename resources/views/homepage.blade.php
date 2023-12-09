@@ -82,12 +82,14 @@
   </div>
 
   {{-- --}}
+  @if (auth()->user()->role == 'admin')
   <div class="p-5 flex justify-center">
     <button @click="openCreate = true" type="button"
       class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
       Create Food
     </button>
   </div>
+  @endif
   <h2 class="sr-only">Products</h2>
   <div class="-mx-px grid grid-cols-2 border-l border-t border-gray-200 sm:mx-0 md:grid-cols-3 lg:grid-cols-3">
     @foreach ($foods as $food)
@@ -129,9 +131,11 @@
               @endfor
           </div>
         </div>
+        @if (auth()->user()->role == 'admin')
         <button wire:click="deleteFood({{ $food }})" type="button" class="mt-4 text-sm text-red-400">
           Hapus
         </button>
+        @endif
       </div>
     </div>
     @endforeach

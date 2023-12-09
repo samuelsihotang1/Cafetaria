@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
       'name' => 'Admin',
       'email' => 'admin@gmail.com',
       'password' => bcrypt('admin@gmail.com'),
-      'name_slug' => 'admin'
+      'name_slug' => 'admin',
+      'role' => 'admin'
     ]);
 
     // Food

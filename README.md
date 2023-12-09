@@ -3,7 +3,8 @@
 # Samuel C. A. Sihotang - Portofolio
 ## Cafetaria
 A website that can assist cafeteria operators in determining the ratings of the food menus they offer.
-https://kantin.samuelsihotang.my.id/
+<br>
+<a href="https://kantin.samuelsihotang.my.id/">Cafetaria</a>
 
 ### Made with
 - HTML

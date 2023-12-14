@@ -6,33 +6,62 @@ use Illuminate\Http\Request;
 use App\Http\Resources\ApiResource;
 use App\Models\Food;
 use App\Models\Review;
+use Illuminate\Http\JsonResponse;
+
+use Illuminate\Support\Facades\URL;
 
 class ApiController extends Controller
 {
-  public function getFoods()
+
+  public function getFoods(): JsonResponse
   {
     $foods = Food::all();
-    return ApiResource::collection($foods);
+    $formattedFoods = $foods->map(function ($foods) {
+      return [
+        'food' => $foods,
+        'links' => $foods->getLinks(),
+      ];
+    });
+    return response()->json([
+      'foods' => $formattedFoods,
+    ]);
   }
 
-  public function searchFoods(Request $request)
+  public function search($id): JsonResponse
   {
-    $search = $request->search;
-    $foods = Food::where('name', 'LIKE', '%' . $search . '%')->get();
-    return ApiResource::collection($foods);
+    $foods = Food::findOrFail($id);
+    return response()->json([
+      'food' => $foods,
+      'links' => $foods->getLinks(),
+    ]);
   }
 
   public function topReviewFood()
   {
-    $reviews = Review::where('taste', '=', '3')->orWhere('portion', '=', '3')->get();
+    $reviews = Review::where('taste', '=', '3')->where('portion', '=', '3')->get();
     $foods = [];
     foreach ($reviews as $review) {
-      $food = Food::where('id', '=', $review->food_id)->first();
+      $food = $review->food;
       if ($food) {
         $foods[] = $food;
       }
     }
 
-    return ApiResource::collection($foods);
+    if (empty($foods)) {
+      return response()->json([
+        'message' => 'No foods found for the given criteria.',
+      ]);
+    }
+
+    $formattedFoods = collect($foods)->map(function ($food) {
+      return [
+        'food' => $food,
+        'links' => $food->getLinks(),
+      ];
+    });
+
+    return response()->json([
+      'foods' => $formattedFoods,
+    ]);
   }
 }

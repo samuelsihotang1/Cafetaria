@@ -37,35 +37,6 @@ class ApiController extends Controller
     ]);
   }
 
-  public function topReviewFood()
-  {
-    $reviews = Review::where('taste', '=', '3')->where('portion', '=', '3')->get();
-    $foods = [];
-    foreach ($reviews as $review) {
-      $food = $review->food;
-      if ($food) {
-        $foods[] = $food;
-      }
-    }
-
-    if (empty($foods)) {
-      return response()->json([
-        'message' => 'No foods found for the given criteria.',
-      ]);
-    }
-
-    $formattedFoods = collect($foods)->map(function ($food) {
-      return [
-        'food' => $food,
-        'links' => $food->getLinks(),
-      ];
-    });
-
-    return response()->json([
-      'foods' => $formattedFoods,
-    ]);
-  }
-
   public function deleteFoods($id): JsonResponse
   {
     Food::destroy($id);

@@ -20,7 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('foods', [ApiController::class, 'getFoods']);
-Route::get('topReviewFood', [ApiController::class, 'topReviewFood']);
 Route::get('foods/{id}', [ApiController::class, 'search']);
 
 Route::get('foods/{id}/delete', [ApiController::class, 'deleteFoods']);

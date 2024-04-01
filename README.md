@@ -4,7 +4,7 @@
 ## Cafetaria
 A website that can assist cafeteria operators in determining the ratings of the food menus they offer.
 <br>
-<a href="https://kantin.samuelsihotang.my.id/">Cafetaria</a>
+<a href="https://cafetaria.samz.my.id">Cafetaria</a>
 
 ### Made with
 - HTML
